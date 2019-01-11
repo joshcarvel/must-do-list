@@ -35,11 +35,28 @@ class List extends Component {
   render() {
     return (
       <div className="App">
-        <form onSubmit={this.addItem}>
-          <input name="listItem" placeholder="enter task" />
-          <button type="submit">add</button>
-        </form>
-        <Items items={this.state.items} delete={this.deleteItem} />
+        <header>
+          <h1>THE MUST-DO LIST</h1>
+          <h2 className="subtitle">Identify your priorities</h2>
+        </header>
+        <main>
+          <section className="could-do">
+            <h2>COULD-DO</h2>
+            <form onSubmit={this.addItem}>
+              <input
+                size="5"
+                type="text"
+                name="listItem"
+                placeholder="enter task"
+              />
+              <button type="submit">add</button>
+            </form>
+            <Items items={this.state.items} delete={this.deleteItem} />
+          </section>
+          <section className="must-do">
+            <h2>MUST-DO</h2>
+          </section>
+        </main>
       </div>
     );
   }
