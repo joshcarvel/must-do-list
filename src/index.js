@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import List from "./List";
+import App from "./App";
 
-ReactDOM.render(<List />, document.getElementById("container"));
+ReactDOM.render(<App />, document.getElementById("container"));
