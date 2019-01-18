@@ -5,23 +5,29 @@ import { DragDropContext } from "react-beautiful-dnd";
 
 class App extends Component {
   state = {
-    tasks: []
+    tasks: [],
+    count: 0
   };
 
   addTask = e => {
     e.preventDefault();
 
+    let count = this.state.count;
+
     if (e.target.elements.listItem.value !== "") {
       const newTask = {
         text: e.target.elements.listItem.value,
-        id: this.state.tasks.length + 1
+        id: count + 1
       };
+
+      count++;
 
       const tasks = [...this.state.tasks];
       tasks.push(newTask);
 
       this.setState({
-        tasks
+        tasks,
+        count
       });
     }
 

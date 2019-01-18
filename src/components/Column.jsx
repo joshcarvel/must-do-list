@@ -25,7 +25,7 @@ class Column extends Component {
         <p className="instruction">Please enter at least 2 tasks!</p>
 
         <FlipMove duration={150} easing="ease-out">
-          <Droppable droppableId={Date.now()}>
+          <Droppable droppableId="column">
             {provided => (
               <div
                 className="task-list"

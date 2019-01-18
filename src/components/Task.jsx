@@ -17,33 +17,29 @@ class Task extends Component {
       <Draggable draggableId={this.props.id} index={this.props.index}>
         {(provided, snapshot) => (
           <div
-            className="task-wrapper"
+            className="item-wrapper"
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <div className={this.getTaskClass(snapshot)}>{this.props.text}</div>
-            <button
-              onClick={() => this.props.delete(this.props.id)}
-              className="delete"
-            >
-              x
-            </button>
+            <div className="priority-wrapper">
+              <div className="priority">{this.props.index + 1}.</div>
+            </div>
+            <div className="task-wrapper">
+              <div className={this.getTaskClass(snapshot)}>
+                {this.props.text}
+              </div>
+              <button
+                onClick={() => this.props.delete(this.props.id)}
+                className="delete"
+              >
+                x
+              </button>
+            </div>
           </div>
         )}
       </Draggable>
-
-      /*
-
-    <div className="task">
-      <div className="priority-wrapper">
-        <div className="priority">{id}.</div>
-      </div>
-      <div className="task">{text}</div>
-     
-    </div>
-    */
     );
   }
 }

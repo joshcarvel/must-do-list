@@ -33,13 +33,6 @@ button:hover {
   border: 2px solid #003399;
 }
 
-.priority-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 10px;
-}
-
 .task-list {
   padding: 8px;
 }
