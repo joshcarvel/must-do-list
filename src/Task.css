@@ -1,0 +1,24 @@
+.task-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.task {
+  width: 150px;
+  color: #333;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: solid 1px black;
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color 0.2s ease-out;
+}
+
+.dragging {
+  background-color: lightgreen;
+}
+
+.delete {
+  padding: 5px 10px;
+  margin: 0 0 10px 10px;
+}

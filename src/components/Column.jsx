@@ -5,10 +5,6 @@ import { Droppable } from "react-beautiful-dnd";
 import "../Column.css";
 
 class Column extends Component {
-  delete = id => {
-    this.props.delete(id);
-  };
-
   render() {
     const { tasks, add } = this.props;
 
@@ -16,8 +12,15 @@ class Column extends Component {
       <section className="could-do">
         <h2>COULD-DO</h2>
         <form onSubmit={add}>
-          <input type="text" name="listItem" placeholder="enter task" />
-          <button type="submit">add</button>
+          <input
+            type="text"
+            name="listItem"
+            placeholder="enter task"
+            autoComplete="off"
+          />
+          <button type="submit" className="add">
+            add
+          </button>
         </form>
         <p className="instruction">Please enter at least 2 tasks!</p>
 
@@ -35,7 +38,7 @@ class Column extends Component {
                     id={task.id}
                     index={index}
                     text={task.text}
-                    delete={this.delete}
+                    delete={this.props.delete}
                   />
                 ))}
                 {provided.placeholder}

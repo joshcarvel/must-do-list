@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Draggable } from "react-beautiful-dnd";
+import "../Task.css";
 
 class Task extends Component {
   getTaskClass = snapshot => {
@@ -16,13 +17,19 @@ class Task extends Component {
       <Draggable draggableId={this.props.id} index={this.props.index}>
         {(provided, snapshot) => (
           <div
-            className={this.getTaskClass(snapshot)}
+            className="task-wrapper"
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            {this.props.text}
+            <div className={this.getTaskClass(snapshot)}>{this.props.text}</div>
+            <button
+              onClick={() => this.props.delete(this.props.id)}
+              className="delete"
+            >
+              x
+            </button>
           </div>
         )}
       </Draggable>
@@ -34,7 +41,7 @@ class Task extends Component {
         <div className="priority">{id}.</div>
       </div>
       <div className="task">{text}</div>
-      <button onClick={() => props.delete(id)}>x</button>
+     
     </div>
     */
     );
