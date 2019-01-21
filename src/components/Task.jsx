@@ -25,29 +25,31 @@ class Task extends Component {
   };
 
   render() {
+    const { id, index, task, text, prioritised } = this.props;
+
     return (
-      <Draggable draggableId={this.props.id} index={this.props.index}>
+      <Draggable draggableId={id} index={index}>
         {(provided, snapshot) => (
           <div
-            className={this.getItemClass(this.props.task)}
+            className={this.getItemClass(task)}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
             <div className="priority-wrapper">
-              <div className="priority">{this.props.index + 1}.</div>
+              <div className="priority">{index + 1}.</div>
             </div>
             <div className="task-wrapper">
-              <div className={this.getTaskClass(snapshot)}>
-                {this.props.text}
-              </div>
-              <button
-                onClick={() => this.props.delete(this.props.id)}
-                className="delete"
-              >
-                x
-              </button>
+              <div className={this.getTaskClass(snapshot)}>{text}</div>
+              {!prioritised && (
+                <button
+                  onClick={() => this.props.deleteTask(id)}
+                  className="delete"
+                >
+                  x
+                </button>
+              )}
             </div>
           </div>
         )}

@@ -28,6 +28,10 @@ input {
   border: 2px solid #0066ff;
 }
 
+.toggle {
+  margin: 10px;
+}
+
 button:hover {
   background-color: #003399;
   border: 2px solid #003399;
@@ -35,13 +39,4 @@ button:hover {
 
 .task-list {
   padding: 8px;
-}
-
-.buttons-wrapper {
-  display: flex;
-  flex-direction: row;
-}
-
-.buttons-wrapper button {
-  margin: 5px;
 }

@@ -6,27 +6,39 @@ import "../Column.css";
 
 class Column extends Component {
   render() {
-    const { tasks, add } = this.props;
+    const { tasks, add, deleteTask, prioritised } = this.props;
 
     return (
       <section className="could-do">
-        <h2>COULD-DO</h2>
-        <form onSubmit={add}>
-          <input
-            type="text"
-            name="listItem"
-            placeholder="enter task"
-            autoComplete="off"
-          />
-          <button type="submit" className="add">
-            add
+        {!prioritised && <h2>COULD-DO</h2>}
+        {prioritised && <h2>MUST-DO</h2>}
+        {!prioritised && (
+          <form onSubmit={add}>
+            <input
+              type="text"
+              name="listItem"
+              placeholder="enter task"
+              autoComplete="off"
+            />
+
+            <button type="submit" className="add">
+              add
+            </button>
+          </form>
+        )}
+        {tasks.length < 2 && (
+          <p className="instruction">Please enter at least 2 tasks!</p>
+        )}
+        {!prioritised && tasks.length >= 2 && (
+          <button className="toggle" onClick={this.props.convert}>
+            Convert
           </button>
-        </form>
-        <p className="instruction">Please enter at least 2 tasks!</p>
-        <div className="buttons-wrapper">
-          <button onClick={this.props.convert}>Convert</button>
-          <button onClick={this.props.restore}>Restore to-do list</button>
-        </div>
+        )}
+        {prioritised && (
+          <button className="toggle" onClick={this.props.restore}>
+            Restore to-do list
+          </button>
+        )}
 
         <FlipMove duration={150} easing="ease-out">
           <Droppable droppableId="column">
@@ -43,7 +55,8 @@ class Column extends Component {
                     id={task.id}
                     index={index}
                     text={task.text}
-                    delete={this.props.delete}
+                    deleteTask={deleteTask}
+                    prioritised={prioritised}
                   />
                 ))}
                 {provided.placeholder}

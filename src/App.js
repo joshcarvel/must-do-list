@@ -70,7 +70,7 @@ class App extends Component {
       }
     }
 
-    this.setState({ tasks });
+    this.setState({ tasks, isPrioritised: true });
   };
 
   restore = () => {
@@ -80,7 +80,7 @@ class App extends Component {
       tasks[i].isFiltered = false;
     }
 
-    this.setState({ tasks });
+    this.setState({ tasks, isPrioritised: false });
   };
 
   render() {
@@ -94,10 +94,11 @@ class App extends Component {
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Column
               tasks={this.state.tasks}
-              delete={this.deleteTask}
+              deleteTask={this.deleteTask}
               add={this.addTask}
               convert={this.convert}
               restore={this.restore}
+              prioritised={this.state.isPrioritised}
             />
           </DragDropContext>
         </main>
