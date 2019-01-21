@@ -36,6 +36,11 @@
   margin: 0 0 10px 10px;
 }
 
-.filtered {
+.hidden {
   display: none;
+}
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: row;
 }

@@ -17,8 +17,8 @@ class Task extends Component {
   getItemClass = task => {
     let c = "item ";
 
-    if (task.isFiltered) {
-      c += "filtered ";
+    if (task.isHidden) {
+      c += "hidden ";
     }
 
     return c;

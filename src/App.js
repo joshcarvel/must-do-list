@@ -61,26 +61,30 @@ class App extends Component {
     });
   };
 
-  convert = () => {
+  convert = n => {
     const tasks = [...this.state.tasks];
 
-    if (tasks.length > 1) {
-      for (let i = 1; i < tasks.length; i++) {
-        tasks[i].isFiltered = true;
-      }
+    for (let i = 0; i < tasks.length; i++) {
+      tasks[i].isHidden = i >= n ? true : false;
     }
 
-    this.setState({ tasks, isPrioritised: true });
-  };
+    let isPrioritised = false;
+    let isWeekly = false;
+    let isOne = false;
 
-  restore = () => {
-    const tasks = [...this.state.tasks];
-
-    for (let i = 1; i < tasks.length; i++) {
-      tasks[i].isFiltered = false;
+    if (n !== tasks.length) {
+      isPrioritised = true;
     }
 
-    this.setState({ tasks, isPrioritised: false });
+    if (tasks.length > 5 && n === 5) {
+      isWeekly = true;
+    }
+
+    if (n === 1) {
+      isOne = true;
+    }
+
+    this.setState({ tasks, isPrioritised, isWeekly, isOne });
   };
 
   render() {
@@ -99,6 +103,8 @@ class App extends Component {
               convert={this.convert}
               restore={this.restore}
               prioritised={this.state.isPrioritised}
+              weekly={this.state.isWeekly}
+              one={this.state.isOne}
             />
           </DragDropContext>
         </main>

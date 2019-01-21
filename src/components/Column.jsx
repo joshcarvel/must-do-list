@@ -6,7 +6,7 @@ import "../Column.css";
 
 class Column extends Component {
   render() {
-    const { tasks, add, deleteTask, prioritised } = this.props;
+    const { tasks, add, deleteTask, prioritised, weekly, one } = this.props;
 
     return (
       <section className="could-do">
@@ -29,16 +29,27 @@ class Column extends Component {
         {tasks.length < 2 && (
           <p className="instruction">Please enter at least 2 tasks!</p>
         )}
-        {!prioritised && tasks.length >= 2 && (
-          <button className="toggle" onClick={this.props.convert}>
-            Convert
-          </button>
-        )}
-        {prioritised && (
-          <button className="toggle" onClick={this.props.restore}>
-            Restore to-do list
-          </button>
-        )}
+
+        <div className="buttons-wrapper">
+          {tasks.length > 1 && !one && (
+            <button className="toggle" onClick={() => this.props.convert(1)}>
+              Get priority!
+            </button>
+          )}
+          {tasks.length > 5 && !weekly && (
+            <button className="toggle" onClick={() => this.props.convert(5)}>
+              Get weekly list
+            </button>
+          )}
+          {prioritised && (
+            <button
+              className="toggle"
+              onClick={() => this.props.convert(tasks.length)}
+            >
+              Restore to-do list
+            </button>
+          )}
+        </div>
 
         <FlipMove duration={150} easing="ease-out">
           <Droppable droppableId="column">
