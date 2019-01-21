@@ -6,9 +6,21 @@ import "../Task.css";
 class Task extends Component {
   getTaskClass = snapshot => {
     let c = "task ";
+
     if (snapshot.isDragging) {
-      c += "dragging";
+      c += "dragging ";
     }
+
+    return c;
+  };
+
+  getItemClass = task => {
+    let c = "item ";
+
+    if (task.isFiltered) {
+      c += "filtered ";
+    }
+
     return c;
   };
 
@@ -17,7 +29,7 @@ class Task extends Component {
       <Draggable draggableId={this.props.id} index={this.props.index}>
         {(provided, snapshot) => (
           <div
-            className="item-wrapper"
+            className={this.getItemClass(this.props.task)}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}

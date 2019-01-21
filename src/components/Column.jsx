@@ -23,6 +23,10 @@ class Column extends Component {
           </button>
         </form>
         <p className="instruction">Please enter at least 2 tasks!</p>
+        <div className="buttons-wrapper">
+          <button onClick={this.props.convert}>Convert</button>
+          <button onClick={this.props.restore}>Restore to-do list</button>
+        </div>
 
         <FlipMove duration={150} easing="ease-out">
           <Droppable droppableId="column">
@@ -34,6 +38,7 @@ class Column extends Component {
               >
                 {tasks.map((task, index) => (
                   <Task
+                    task={task}
                     key={task.id}
                     id={task.id}
                     index={index}

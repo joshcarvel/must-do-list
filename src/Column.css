@@ -36,3 +36,12 @@ button:hover {
 .task-list {
   padding: 8px;
 }
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons-wrapper button {
+  margin: 5px;
+}

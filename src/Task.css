@@ -1,4 +1,4 @@
-.item-wrapper {
+.item {
   display: flex;
   flex-direction: row;
 }
@@ -34,4 +34,8 @@
 .delete {
   padding: 5px 10px;
   margin: 0 0 10px 10px;
+}
+
+.filtered {
+  display: none;
 }

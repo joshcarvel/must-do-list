@@ -61,6 +61,28 @@ class App extends Component {
     });
   };
 
+  convert = () => {
+    const tasks = [...this.state.tasks];
+
+    if (tasks.length > 1) {
+      for (let i = 1; i < tasks.length; i++) {
+        tasks[i].isFiltered = true;
+      }
+    }
+
+    this.setState({ tasks });
+  };
+
+  restore = () => {
+    const tasks = [...this.state.tasks];
+
+    for (let i = 1; i < tasks.length; i++) {
+      tasks[i].isFiltered = false;
+    }
+
+    this.setState({ tasks });
+  };
+
   render() {
     return (
       <div className="App">
@@ -74,6 +96,8 @@ class App extends Component {
               tasks={this.state.tasks}
               delete={this.deleteTask}
               add={this.addTask}
+              convert={this.convert}
+              restore={this.restore}
             />
           </DragDropContext>
         </main>
