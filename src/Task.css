@@ -27,11 +27,16 @@
   overflow-wrap: break-word;
 }
 
+.done {
+  text-decoration: line-through;
+}
+
 .dragging {
   background-color: lightgreen;
 }
 
-.delete {
+.delete,
+.mark-done {
   padding: 5px 10px;
   margin: 0 0 10px 10px;
 }

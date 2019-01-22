@@ -17,7 +17,8 @@ class App extends Component {
     if (e.target.elements.listItem.value !== "") {
       const newTask = {
         text: e.target.elements.listItem.value,
-        id: count + 1
+        id: count + 1,
+        isDone: false
       };
 
       count++;
@@ -87,6 +88,16 @@ class App extends Component {
     this.setState({ tasks, isPrioritised, isWeekly, isOne });
   };
 
+  setStatus = id => {
+    const tasks = [...this.state.tasks];
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].id === id) {
+        tasks[i].isDone = !this.state.tasks[i].isDone;
+      }
+      this.setState({ tasks });
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -105,6 +116,7 @@ class App extends Component {
               prioritised={this.state.isPrioritised}
               weekly={this.state.isWeekly}
               one={this.state.isOne}
+              setStatus={this.setStatus}
             />
           </DragDropContext>
         </main>

@@ -6,7 +6,15 @@ import "../Column.css";
 
 class Column extends Component {
   render() {
-    const { tasks, add, deleteTask, prioritised, weekly, one } = this.props;
+    const {
+      tasks,
+      add,
+      deleteTask,
+      prioritised,
+      weekly,
+      one,
+      setStatus
+    } = this.props;
 
     return (
       <section className="could-do">
@@ -68,6 +76,7 @@ class Column extends Component {
                     text={task.text}
                     deleteTask={deleteTask}
                     prioritised={prioritised}
+                    setStatus={setStatus}
                   />
                 ))}
                 {provided.placeholder}

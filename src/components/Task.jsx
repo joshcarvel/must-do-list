@@ -4,11 +4,15 @@ import { Draggable } from "react-beautiful-dnd";
 import "../Task.css";
 
 class Task extends Component {
-  getTaskClass = snapshot => {
+  getTaskClass = (snapshot, task) => {
     let c = "task ";
 
     if (snapshot.isDragging) {
       c += "dragging ";
+    }
+
+    if (task.isDone) {
+      c += "done ";
     }
 
     return c;
@@ -25,7 +29,7 @@ class Task extends Component {
   };
 
   render() {
-    const { id, index, task, text, prioritised } = this.props;
+    const { id, index, task, text, prioritised, setStatus } = this.props;
 
     return (
       <Draggable draggableId={id} index={index}>
@@ -41,7 +45,11 @@ class Task extends Component {
               <div className="priority">{index + 1}.</div>
             </div>
             <div className="task-wrapper">
-              <div className={this.getTaskClass(snapshot)}>{text}</div>
+              <div className={this.getTaskClass(snapshot, task)}>{text}</div>
+              <button className="mark-done" onClick={() => setStatus(id)}>
+                -
+              </button>
+
               {!prioritised && (
                 <button
                   onClick={() => this.props.deleteTask(id)}
