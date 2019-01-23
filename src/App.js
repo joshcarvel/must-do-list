@@ -101,11 +101,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <h1>THE MUST-DO LIST</h1>
-          <h2 className="subtitle">Identify your priorities</h2>
+        <header className="mb-4">
+          <h1 className="display-4 text-center m-0 p-2">
+            The <span className="font-weight-bold">MUST-DO</span> List
+          </h1>
+          <h2 className="text-center m-0 p-2 font-weight-light font-italic">
+            Focus on your priorities
+          </h2>
         </header>
-        <main>
+        <main class="container-fluid">
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Column
               tasks={this.state.tasks}

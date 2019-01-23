@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Draggable } from "react-beautiful-dnd";
-import "../Task.css";
 
 class Task extends Component {
   getTaskClass = (snapshot, task) => {
-    let c = "task ";
+    let c = "task p-1 border border-secondary rounded ";
 
     if (snapshot.isDragging) {
       c += "dragging ";
@@ -19,11 +18,9 @@ class Task extends Component {
   };
 
   getItemClass = task => {
-    let c = "item ";
+    let c = "justify-content-center align-items-center mb-2 ";
 
-    if (task.isHidden) {
-      c += "hidden ";
-    }
+    c += task.isHidden ? "d-none " : "d-flex ";
 
     return c;
   };
@@ -41,24 +38,23 @@ class Task extends Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <div className="priority-wrapper">
-              <div className="priority">{index + 1}.</div>
-            </div>
-            <div className="task-wrapper">
-              <div className={this.getTaskClass(snapshot, task)}>{text}</div>
-              <button className="mark-done" onClick={() => setStatus(id)}>
-                -
-              </button>
+            <div className="priority mr-2">{index + 1}.</div>
+            <div className={this.getTaskClass(snapshot, task)}>{text}</div>
+            <button
+              className="mx-2 btn btn-success py-1"
+              onClick={() => setStatus(id)}
+            >
+              &#x2713;
+            </button>
 
-              {!prioritised && (
-                <button
-                  onClick={() => this.props.deleteTask(id)}
-                  className="delete"
-                >
-                  x
-                </button>
-              )}
-            </div>
+            {!prioritised && (
+              <button
+                onClick={() => this.props.deleteTask(id)}
+                className="btn btn-danger py-1"
+              >
+                x
+              </button>
+            )}
           </div>
         )}
       </Draggable>
