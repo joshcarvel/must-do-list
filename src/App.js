@@ -105,7 +105,7 @@ class App extends Component {
           <h1 className="display-4 text-center m-0 p-2">
             The <span className="font-weight-bold">MUST-DO</span> List
           </h1>
-          <h2 className="text-center m-0 p-2 font-weight-light font-italic">
+          <h2 className="subtitle text-center m-0 p-2 font-weight-light font-italic">
             Focus on your priorities
           </h2>
         </header>
