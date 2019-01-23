@@ -124,6 +124,7 @@ class App extends Component {
             />
           </DragDropContext>
         </main>
+        <footer>&copy; Josh Carvel 2019</footer>
       </div>
     );
   }
