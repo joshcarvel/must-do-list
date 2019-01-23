@@ -12,7 +12,8 @@ class Column extends Component {
       prioritised,
       weekly,
       one,
-      setStatus
+      setStatus,
+      convert
     } = this.props;
 
     return (
@@ -36,14 +37,14 @@ class Column extends Component {
 
           <div className="d-flex justify-content-center">
             {tasks.length < 2 && (
-              <p className="py-1 my-2 border border-white ">
+              <p className="py-1 my-2 border border-white rounded">
                 Please enter at least 2 tasks!
               </p>
             )}
             {tasks.length > 1 && !one && (
               <button
                 className="toggle btn btn-warning m-2 py-1 px-2"
-                onClick={() => this.props.convert(1)}
+                onClick={() => convert(1)}
               >
                 See priority
               </button>
@@ -51,7 +52,7 @@ class Column extends Component {
             {tasks.length > 5 && !weekly && (
               <button
                 className="toggle btn btn-info m-2 py-1 px-2"
-                onClick={() => this.props.convert(5)}
+                onClick={() => convert(5)}
               >
                 See top 5
               </button>
@@ -59,7 +60,7 @@ class Column extends Component {
             {prioritised && (
               <button
                 className="toggle btn btn-secondary m-2 py-1 px-2"
-                onClick={() => this.props.convert(tasks.length)}
+                onClick={() => convert(tasks.length)}
               >
                 See to-do list
               </button>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Draggable } from "react-beautiful-dnd";
 
 class Task extends Component {
@@ -14,6 +13,10 @@ class Task extends Component {
       c += "done ";
     }
 
+    if (this.props.prioritised) {
+      c += "border-danger ";
+    }
+
     return c;
   };
 
@@ -25,18 +28,33 @@ class Task extends Component {
     return c;
   };
 
+  toggleDrag = () => {
+    return this.props.prioritised ? true : false;
+  };
+
   render() {
-    const { id, index, task, text, prioritised, setStatus } = this.props;
+    const {
+      id,
+      index,
+      task,
+      text,
+      prioritised,
+      setStatus,
+      deleteTask
+    } = this.props;
 
     return (
-      <Draggable draggableId={id} index={index}>
+      <Draggable
+        draggableId={id}
+        index={index}
+        isDragDisabled={this.toggleDrag()}
+      >
         {(provided, snapshot) => (
           <div
             className={this.getItemClass(task)}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
           >
             <div className="priority mr-2">{index + 1}.</div>
             <div className={this.getTaskClass(snapshot, task)}>{text}</div>
@@ -49,7 +67,7 @@ class Task extends Component {
 
             {!prioritised && (
               <button
-                onClick={() => this.props.deleteTask(id)}
+                onClick={() => deleteTask(id)}
                 className="btn btn-danger py-1"
               >
                 x

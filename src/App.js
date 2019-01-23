@@ -14,7 +14,7 @@ class App extends Component {
 
     let count = this.state.count;
 
-    if (e.target.elements.listItem.value !== "") {
+    if (e.target.elements.listItem.value.trim() !== "") {
       const newTask = {
         text: e.target.elements.listItem.value,
         id: count + 1,
@@ -109,7 +109,7 @@ class App extends Component {
             Focus on your priorities
           </h2>
         </header>
-        <main class="container-fluid">
+        <main className="container-fluid">
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Column
               tasks={this.state.tasks}
